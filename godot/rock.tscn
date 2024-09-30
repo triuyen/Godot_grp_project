@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://clc0nphcih440"]
+
+[ext_resource type="Texture2D" uid="uid://q8eeh8nsw7l" path="res://assets/mystic_woods_free_2.2/sprites/objects/objects.png" id="1_gmboq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qlemj"]
+size = Vector2(15, 6.375)
+
+[node name="rock" type="StaticBody2D"]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 3.75)
+scale = Vector2(4, 4)
+shape = SubResource("RectangleShape2D_qlemj")
+
+[node name="sprite" type="Sprite2D" parent="."]
+scale = Vector2(4, 4)
+texture = ExtResource("1_gmboq")
+region_enabled = true
+region_rect = Rect2(0, 16, 16, 16)
