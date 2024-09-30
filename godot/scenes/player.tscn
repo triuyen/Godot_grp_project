@@ -224,7 +224,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_as6mc")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack_down",
 "speed": 5.0
 }, {
@@ -241,7 +241,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_rjmlm")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack_side",
 "speed": 5.0
 }, {
@@ -258,7 +258,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_qy8if")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack_up",
 "speed": 5.0
 }, {
@@ -431,7 +431,6 @@ drag_vertical_enabled = true
 
 [node name="sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_cds1d")
-animation = &"idle_down"
+animation = &"attack_up"
 autoplay = "idle_down"
-frame_progress = 0.0213616
 offset = Vector2(0, -16)
