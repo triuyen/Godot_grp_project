@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://bpipg3idin6tn"]
+
+[ext_resource type="SpriteFrames" uid="uid://b7n66o8op5yds" path="res://animations/slime.tres" id="1_scxw6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iirjt"]
+size = Vector2(14, 6.25)
+
+[node name="slime" type="CharacterBody2D"]
+position = Vector2(307, 234)
+scale = Vector2(4, 4)
+collision_layer = 4
+
+[node name="sprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("1_scxw6")
+animation = &"death"
+autoplay = "idle_down"
+frame = 4
+frame_progress = 0.991873
+
+[node name="shape_body" type="CollisionShape2D" parent="."]
+position = Vector2(0, 3.875)
+shape = SubResource("RectangleShape2D_iirjt")
