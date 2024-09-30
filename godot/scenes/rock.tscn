@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://clc0nphcih440"]
 
-[ext_resource type="Texture2D" uid="uid://q8eeh8nsw7l" path="res://assets/mystic_woods_free_2.2/sprites/objects/objects.png" id="1_gmboq"]
+[ext_resource type="Texture2D" uid="uid://q8eeh8nsw7l" path="res://assets/mystic_woods_free_2.2/sprites/objects/objects.png" id="1_4341e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qlemj"]
 size = Vector2(15, 6.375)
@@ -15,6 +15,6 @@ shape = SubResource("RectangleShape2D_qlemj")
 
 [node name="sprite" type="Sprite2D" parent="."]
 scale = Vector2(4, 4)
-texture = ExtResource("1_gmboq")
+texture = ExtResource("1_4341e")
 region_enabled = true
 region_rect = Rect2(0, 16, 16, 16)
