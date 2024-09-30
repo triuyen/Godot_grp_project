@@ -98,4 +98,5 @@ tile_map_data = PackedByteArray("AAAAAAAAAAABAAQAAAABAAAAAAACAAQAAAABAAEAAAACAAU
 tile_set = SubResource("TileSet_ppck3")
 
 [node name="player" parent="." instance=ExtResource("3_gupfe")]
+unique_name_in_owner = true
 position = Vector2(598, 285)
