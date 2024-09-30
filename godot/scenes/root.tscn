@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=4 uid="uid://bssqudvpnv6pv"]
+[gd_scene load_steps=8 format=4 uid="uid://bssqudvpnv6pv"]
 
 [ext_resource type="Script" path="res://scripts/root.gd" id="1_ne0ds"]
 [ext_resource type="Texture2D" uid="uid://5voqq1eucswb" path="res://assets/mystic_woods_free_2.2/sprites/tilesets/plains.png" id="2_76kwq"]
 [ext_resource type="PackedScene" uid="uid://b885koudadcot" path="res://scenes/player.tscn" id="3_gupfe"]
+[ext_resource type="PackedScene" uid="uid://clc0nphcih440" path="res://scenes/rock.tscn" id="4_jsabu"]
+[ext_resource type="PackedScene" uid="uid://dfecddfy4qu36" path="res://scenes/slime.tscn" id="5_dm0s3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xprb3"]
 texture = ExtResource("2_76kwq")
@@ -100,3 +102,9 @@ tile_set = SubResource("TileSet_ppck3")
 [node name="player" parent="." instance=ExtResource("3_gupfe")]
 unique_name_in_owner = true
 position = Vector2(598, 285)
+
+[node name="rock" parent="." instance=ExtResource("4_jsabu")]
+position = Vector2(708, 266)
+
+[node name="slime" parent="." instance=ExtResource("5_dm0s3")]
+position = Vector2(653, 355)
