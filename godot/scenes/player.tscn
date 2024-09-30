@@ -1,6 +1,7 @@
-[gd_scene load_steps=55 format=3 uid="uid://b885koudadcot"]
+[gd_scene load_steps=57 format=3 uid="uid://b885koudadcot"]
 
 [ext_resource type="Texture2D" uid="uid://dhec6fqt6p5tv" path="res://assets/mystic_woods_free_2.2/sprites/characters/player.png" id="1_0yyrw"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_dp3ll"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6sc24"]
 size = Vector2(12, 8.25)
@@ -415,15 +416,20 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j6c2y"]
+size = Vector2(14.5998, 22.0346)
+
 [node name="player" type="CharacterBody2D"]
 scale = Vector2(4, 4)
-collision_mask = 2
+collision_mask = 6
+script = ExtResource("1_dp3ll")
 
 [node name="shape_body" type="CollisionShape2D" parent="."]
 position = Vector2(0.25, -2.75)
 shape = SubResource("RectangleShape2D_6sc24")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+visible = false
 scale = Vector2(0.25, 0.25)
 position_smoothing_enabled = true
 drag_horizontal_enabled = true
@@ -431,6 +437,19 @@ drag_vertical_enabled = true
 
 [node name="sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_cds1d")
-animation = &"attack_up"
+animation = &"idle_down"
 autoplay = "idle_down"
 offset = Vector2(0, -16)
+
+[node name="sword_area" type="Area2D" parent="."]
+visible = false
+collision_mask = 4
+
+[node name="hit_box" type="CollisionShape2D" parent="sword_area"]
+visible = false
+position = Vector2(0.249999, -7.75)
+rotation = -3.14159
+scale = Vector2(1.26714, -0.896319)
+shape = SubResource("RectangleShape2D_j6c2y")
+
+[connection signal="body_entered" from="sword_area" to="." method="_on_sword_area_body_entered"]
