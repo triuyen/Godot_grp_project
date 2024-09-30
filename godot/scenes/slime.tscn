@@ -1,0 +1,58 @@
+[gd_scene load_steps=8 format=3 uid="uid://dfecddfy4qu36"]
+
+[ext_resource type="Texture2D" uid="uid://che2rhm5alkeq" path="res://assets/mystic_woods_free_2.2/sprites/characters/slime.png" id="1_igsov"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4wq1x"]
+atlas = ExtResource("1_igsov")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h002c"]
+atlas = ExtResource("1_igsov")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2enqe"]
+atlas = ExtResource("1_igsov")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aqbh1"]
+atlas = ExtResource("1_igsov")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ndtjt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4wq1x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h002c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2enqe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aqbh1")
+}],
+"loop": true,
+"name": &"slime_down",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qombs"]
+radius = 30.2423
+
+[node name="slime" type="CharacterBody2D" groups=["enemies"]]
+collision_layer = 4
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." groups=["enemies"]]
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_ndtjt")
+animation = &"slime_down"
+autoplay = "slime_down"
+frame_progress = 0.396184
+offset = Vector2(0, -8.46)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["enemies"]]
+position = Vector2(0, -8)
+scale = Vector2(-0.859724, 0.438894)
+shape = SubResource("CircleShape2D_qombs")
