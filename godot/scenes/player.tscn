@@ -417,7 +417,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j6c2y"]
-size = Vector2(14.5998, 22.0346)
+size = Vector2(13.2187, 17.5719)
 
 [node name="player" type="CharacterBody2D"]
 scale = Vector2(4, 4)
@@ -447,7 +447,7 @@ collision_mask = 4
 
 [node name="hit_box" type="CollisionShape2D" parent="sword_area"]
 visible = false
-position = Vector2(0.249999, -7.75)
+position = Vector2(0.375, -7.375)
 rotation = -3.14159
 scale = Vector2(1.26714, -0.896319)
 shape = SubResource("RectangleShape2D_j6c2y")

@@ -13,7 +13,7 @@ var anim_direction: String = "down"
 var is_attacking = false
 var attack_animation_name: String = "attack_"
 @onready var attack_hitbox: Area2D = $sword_area
-
+var attack_offset = 8
 # stats 
 var damage_amount: int = 20
 
@@ -32,11 +32,11 @@ func _process(_delta: float) -> void:
 	
 	if is_attacking:
 		if anim_direction == "up":
-			attack_hitbox.position = Vector2(0, -10)
+			attack_hitbox.position = Vector2(0, -attack_offset)
 		elif anim_direction == "down":
-			attack_hitbox.position = Vector2(0, 10)
+			attack_hitbox.position = Vector2(0, attack_offset)
 		elif anim_direction == "side":
-			attack_hitbox.position = Vector2(10, 0) if not flip_x else Vector2(-10, 0)
+			attack_hitbox.position = Vector2(attack_offset, 0) if not flip_x else Vector2(-attack_offset, 0)
 			
 		if not sprite.is_playing(): 
 			is_attacking = false  
