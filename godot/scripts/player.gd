@@ -3,7 +3,13 @@ extends Node2D
 @onready var player: CharacterBody2D = %player
 @onready var sprite: AnimatedSprite2D = %player/sprite
 
-const SPEED = 300
+# constants
+const SPEED: int = 300
+const MAX_HEALTH: int = 100
+
+# stats 
+var damage_amount: int = 20
+var health: int = MAX_HEALTH
 
 var direction: Vector2
 var flip_x = false
@@ -14,8 +20,11 @@ var is_attacking = false
 var attack_animation_name: String = "attack_"
 @onready var attack_hitbox: Area2D = $sword_area
 var attack_offset = 8
-# stats 
-var damage_amount: int = 20
+
+# states variables
+var is_alive = true
+
+
 
 func _ready() -> void:
 	attack_hitbox.monitoring = false
@@ -23,6 +32,8 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	
+	if not is_alive : return 
+		
 	# attack
 	if Input.is_action_just_pressed("player_attack") and not is_attacking:
 		is_attacking = true
@@ -76,4 +87,17 @@ func _on_sword_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("enemies"): 
 		print("Ennemi touché : ", body.name)
 		#body.take_damage(damage_amount) 
+	pass
+	
+func take_damage(amount: int) -> void:
+	health -= amount
+	#print("Damage taken : ", amount, "Current health : ", health)
+	if health <= 0:
+		health = 0
+		player.is_alive = false
+		player.die()
+	pass
+	
+func die() -> void:
+	sprite.play("death")
 	pass

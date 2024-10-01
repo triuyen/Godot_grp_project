@@ -273,7 +273,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_8xlab")
 }],
-"loop": true,
+"loop": false,
 "name": &"death",
 "speed": 5.0
 }, {
@@ -437,7 +437,7 @@ drag_vertical_enabled = true
 
 [node name="sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_cds1d")
-animation = &"idle_down"
+animation = &"death"
 autoplay = "idle_down"
 offset = Vector2(0, -16)
 
