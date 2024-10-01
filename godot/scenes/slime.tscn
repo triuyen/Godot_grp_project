@@ -15,9 +15,8 @@ collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_2xdr6")
 
-[node name="hurtbox_coponent" parent="." node_paths=PackedStringArray("health", "sprite") instance=ExtResource("2_8j44a")]
+[node name="hurtbox_coponent" parent="." node_paths=PackedStringArray("health") instance=ExtResource("2_8j44a")]
 health = NodePath("../health_component")
-sprite = NodePath("../sprite")
 
 [node name="sprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -5.75)
@@ -36,3 +35,4 @@ shape = SubResource("RectangleShape2D_iirjt")
 
 [connection signal="on_hit_taken" from="hurtbox_coponent" to="." method="_on_hit_taken"]
 [connection signal="area_entered" from="hitbox_component" to="." method="_on_player_hit"]
+[connection signal="on_death" from="health_component" to="." method="_on_death"]
