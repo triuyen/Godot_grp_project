@@ -6,6 +6,7 @@ var damage_amount: int = 20
 
 func _ready() -> void:
 	var levelManager = current_level.getmode("levelManager")
+	levelManager.connect()
 	pass
 
 func _process(_delta: float) -> void:
