@@ -24,8 +24,6 @@ var attack_offset = 8
 # states variables
 var is_alive = true
 
-
-
 func _ready() -> void:
 	attack_hitbox.monitoring = false
 	pass
@@ -33,6 +31,10 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	
 	if not is_alive : return 
+	
+	#if Input.is_action_just_pressed("take_damage_test"):
+		#player.take_damage(20)
+		#return 	
 		
 	# attack
 	if Input.is_action_just_pressed("player_attack") and not is_attacking:
@@ -91,7 +93,7 @@ func _on_sword_area_body_entered(body: Node2D) -> void:
 	
 func take_damage(amount: int) -> void:
 	health -= amount
-	#print("Damage taken : ", amount, "Current health : ", health)
+	#print("Damage taken : ", amount, " | Current health : ", health)
 	if health <= 0:
 		health = 0
 		player.is_alive = false
@@ -100,4 +102,10 @@ func take_damage(amount: int) -> void:
 	
 func die() -> void:
 	sprite.play("death")
+	await get_tree().create_timer(2).timeout
+	player.show_game_over()
+	pass
+	
+func show_game_over() -> void: 
+	print("*Show game over*")
 	pass
