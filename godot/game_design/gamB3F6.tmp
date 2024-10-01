@@ -1,5 +1,6 @@
-[gd_scene load_steps=28 format=4 uid="uid://bssqudvpnv6pv"]
+[gd_scene load_steps=29 format=4 uid="uid://bssqudvpnv6pv"]
 
+[ext_resource type="Script" path="res://game_design/game_design.gd" id="2_0f6qo"]
 [ext_resource type="Texture2D" uid="uid://5voqq1eucswb" path="res://assets/mystic_woods_free_2.2/sprites/tilesets/plains.png" id="2_76kwq"]
 [ext_resource type="PackedScene" uid="uid://b885koudadcot" path="res://scenes/player.tscn" id="3_gupfe"]
 [ext_resource type="Texture2D" uid="uid://b8o2ohvyxxj8k" path="res://assets/mystic_woods_free_2.2/sprites/tilesets/walls/walls.png" id="4_r63k2"]
@@ -369,6 +370,7 @@ position = Vector2(368, -48)
 collision_mask = 14
 
 [node name="game_design" type="Node2D" parent="."]
+script = ExtResource("2_0f6qo")
 
 [node name="exteriror" type="StaticBody2D" parent="game_design"]
 collision_layer = 2

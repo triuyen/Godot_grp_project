@@ -7,8 +7,9 @@ func _ready() -> void:
 	var levelManager = current_level.getmode("levelManager")
 	levelManager.connect("level_changed", self, )
 
-func _change_to_lvl2(mapToLoad : String):
-	next_level = load("res://game_design/level_2.tscn")
+#func _change_to_lvl2(mapToLoad : String):
+#	next_level = load("res://game_design/level_2.tscn")
+#	pass
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
