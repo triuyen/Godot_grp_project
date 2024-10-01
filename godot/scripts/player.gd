@@ -1,9 +1,16 @@
-extends Node2D
+extends CharacterBody2D
 
-@onready var player: CharacterBody2D = %player
-@onready var sprite: AnimatedSprite2D = %player/sprite
+@onready var player: CharacterBody2D = self
+@onready var sprite: AnimatedSprite2D = %sprite	
+@onready var health_bar: ProgressBar = %health_bar
 
-const SPEED = 300
+# constants
+const SPEED: int = 300
+const DASH_SPEED: int = 1000
+const DASH_DURATION: float = 1
+
+# stats 
+var damage_amount: int = 20
 
 var direction: Vector2
 var flip_x = false
@@ -14,18 +21,27 @@ var is_attacking = false
 var attack_animation_name: String = "attack_"
 @onready var attack_hitbox: Area2D = $sword_area
 var attack_offset = 8
-# stats 
-var damage_amount: int = 20
+
+# dash
+var is_dashing = false
+var dash_timer = Timer
+
+# states variables
+var is_alive = true
 
 func _ready() -> void:
+	attack_hitbox.monitorable = false
 	attack_hitbox.monitoring = false
 	pass
 
 func _process(_delta: float) -> void:
 	
+	if not is_alive : return 
+		
 	# attack
 	if Input.is_action_just_pressed("player_attack") and not is_attacking:
 		is_attacking = true
+		attack_hitbox.monitorable = true
 		attack_hitbox.monitoring = true
 		sprite.play(attack_animation_name + anim_direction)
 		return 
@@ -40,18 +56,26 @@ func _process(_delta: float) -> void:
 			
 		if not sprite.is_playing(): 
 			is_attacking = false  
+			attack_hitbox.monitorable = false
 			attack_hitbox.monitoring = false
 		else:
 			return  
-
+	
+	# dash
+	if Input.is_action_just_pressed("player_dash") and not is_dashing:
+		player.start_dash()
+		return
+	
+	if is_dashing:
+		return
+	
 	# movement
 	var input_x = Input.get_axis("player_left", "player_right")
 	var input_y = Input.get_axis("player_up", "player_down")
 	var input_vector = Vector2(input_x, input_y).normalized()
 	direction = input_vector
 	
-	player.velocity = input_vector * SPEED 
-	player.move_and_slide()
+	player.velocity = input_vector * SPEED
 
 	# animation
 	var base_anim = "idle_" if direction == Vector2.ZERO else "walk_"
@@ -71,9 +95,58 @@ func _process(_delta: float) -> void:
 	sprite.play(animation_name)
 	sprite.flip_h = flip_x
 
-
-func _on_sword_area_body_entered(body: Node2D) -> void:
-	if body.is_in_group("enemies"): 
-		print("Ennemi touché : ", body.name)
-		#body.take_damage(damage_amount) 
+func _physics_process(delta: float) -> void:
+	player.move_and_slide()
+	
+func die() -> void:		
+	player.is_alive = false
+	sprite.play("death")
+	await get_tree().create_timer(2).timeout
+	player.show_game_over()
 	pass
+	
+func show_game_over() -> void: 
+	print("*Show game over*")
+	pass
+
+func start_dash() -> void:
+	is_dashing = true
+	var dash_direction = Vector2()
+	
+	if anim_direction == "down":
+		dash_direction = Vector2(0, 1)
+	elif anim_direction == "up": 
+		dash_direction = Vector2(0, -1)
+	elif anim_direction == "side" and flip_x == true :
+		dash_direction = Vector2(-1, 0)
+	else:
+		dash_direction = Vector2(1, 0)
+	
+	player.velocity = dash_direction * DASH_SPEED	
+	await get_tree().create_timer(0.1).timeout
+	_end_dash()
+	
+
+func _end_dash() -> void:
+	is_dashing = false
+	player.velocity =  Vector2.ZERO
+
+#func _on_health_component_on_damage() -> void:
+	#pass
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
