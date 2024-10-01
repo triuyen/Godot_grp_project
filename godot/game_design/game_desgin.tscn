@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=4 uid="uid://bssqudvpnv6pv"]
+[gd_scene load_steps=27 format=4 uid="uid://bssqudvpnv6pv"]
 
 [ext_resource type="Texture2D" uid="uid://5voqq1eucswb" path="res://assets/mystic_woods_free_2.2/sprites/tilesets/plains.png" id="2_76kwq"]
 [ext_resource type="PackedScene" uid="uid://b885koudadcot" path="res://scenes/player.tscn" id="3_gupfe"]
@@ -7,7 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://c1d6qr3nb12v5" path="res://assets/mystic_woods_free_2.2/sprites/tilesets/floors/carpet.png" id="5_8wo35"]
 [ext_resource type="Texture2D" uid="uid://u487id0oso2k" path="res://assets/mystic_woods_free_2.2/sprites/tilesets/grass.png" id="5_ftoh8"]
 [ext_resource type="Texture2D" uid="uid://bww73fmc81fgj" path="res://assets/mystic_woods_free_2.2/sprites/tilesets/floors/flooring.png" id="6_7424d"]
-[ext_resource type="Script" path="res://game_design/chest.gd" id="6_bvjky"]
 [ext_resource type="Script" path="res://game_design/door.gd" id="8_usiig"]
 [ext_resource type="Script" path="res://game_design/chest_underground.gd" id="9_gc1kc"]
 
@@ -479,7 +478,6 @@ position = Vector2(-432, 280)
 scale = Vector2(10, 10)
 sprite_frames = SubResource("SpriteFrames_ynobi")
 animation = &"open_chest"
-script = ExtResource("6_bvjky")
 
 [node name="door" type="Area2D" parent="game_design/level_1"]
 collision_layer = 8
