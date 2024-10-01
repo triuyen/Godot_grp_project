@@ -1,6 +1,7 @@
 [gd_scene load_steps=26 format=4 uid="uid://bbhwgvsatco73"]
 
 [ext_resource type="Texture2D" uid="uid://c1d6qr3nb12v5" path="res://assets/mystic_woods_free_2.2/sprites/tilesets/floors/carpet.png" id="1_17lxu"]
+[ext_resource type="Script" path="res://game_design/level_2.gd" id="1_cfooo"]
 [ext_resource type="Texture2D" uid="uid://bww73fmc81fgj" path="res://assets/mystic_woods_free_2.2/sprites/tilesets/floors/flooring.png" id="2_pv4cw"]
 [ext_resource type="Texture2D" uid="uid://b8o2ohvyxxj8k" path="res://assets/mystic_woods_free_2.2/sprites/tilesets/walls/walls.png" id="3_8ejni"]
 [ext_resource type="Texture2D" uid="uid://dr7cw4mkjbm8s" path="res://assets/mystic_woods_free_2.2/sprites/objects/chest_01.png" id="4_swpad"]
@@ -8,7 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://b885koudadcot" path="res://scenes/player.tscn" id="7_lbry4"]
 [ext_resource type="Script" path="res://game_design/exit.gd" id="8_yiiv3"]
 [ext_resource type="Texture2D" uid="uid://bx330hm5sbkp7" path="res://assets/mystic_woods_free_2.2/sprites/tilesets/fences.png" id="10_3temo"]
-[ext_resource type="Script" path="res://game_design/l.gd" id="10_mas0u"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xpi1r"]
 texture = ExtResource("1_17lxu")
@@ -187,9 +187,6 @@ texture = ExtResource("10_3temo")
 sources/0 = SubResource("TileSetAtlasSource_g1s0v")
 sources/1 = SubResource("TileSetAtlasSource_px7os")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_oxc3u"]
-size = Vector2(144, 128)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_ogo31"]
 atlas = ExtResource("4_swpad")
 region = Rect2(0, 0, 16, 16)
@@ -226,7 +223,11 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oxc3u"]
+size = Vector2(144, 128)
+
 [node name="Level2" type="Node2D"]
+script = ExtResource("1_cfooo")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 z_index = -3
@@ -442,18 +443,16 @@ scale = Vector2(2, 2)
 tile_map_data = PackedByteArray("AACHAC8AAAACAAAAAACIAC8AAAACAAAAAACJAC8AAAACAAAAAACKAC8AAAACAAAAAACLAC8AAAACAAAAAACHADUAAAACAAAAAACIADUAAAACAAAAAACJADUAAAACAAAAAACKADUAAAACAAAAAACLADUAAAADAAIAAACLADAAAAADAAEAAACLADEAAAADAAEAAACLADIAAAADAAEAAACLADMAAAADAAEAAACLADQAAAADAAEAAABGABcAAQADAAAAAABGABgAAQAAAAEAAABGABkAAQAAAAEAAABGABoAAQADAAIAAABDABoAAQABAAMAAABEABoAAQACAAMAAABFABoAAQACAAMAAABFABcAAQACAAMAAABEABcAAQACAAMAAABDABcAAQACAAMAAAA=")
 tile_set = SubResource("TileSet_njkvw")
 
-[node name="chest" type="Area2D" parent="."]
+[node name="chest_underground" type="AnimatedSprite2D" parent="."]
 position = Vector2(936, -720)
 scale = Vector2(10, 10)
-collision_layer = 32
-script = ExtResource("10_mas0u")
+sprite_frames = SubResource("SpriteFrames_ucecb")
+animation = &"open_chest"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="chest"]
+[node name="chest" type="Area2D" parent="chest_underground"]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="chest_underground/chest"]
 position = Vector2(7.62939e-06, -7.62939e-06)
 scale = Vector2(0.0999999, 0.0999999)
 shape = SubResource("RectangleShape2D_oxc3u")
-
-[node name="chest_underground" type="AnimatedSprite2D" parent="chest"]
-scale = Vector2(1, 1)
-sprite_frames = SubResource("SpriteFrames_ucecb")
-animation = &"open_chest"

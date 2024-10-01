@@ -4,20 +4,17 @@ extends Area2D
 var ui_instance
 	
 func _input(event):
-	if event.is_action_pressed("ui_accept"):
-		if get_overlapping_areas().size() > 0:
+	if get_overlapping_areas().size() > 0:
 			_on_show_popup_button_pressed()
 
 # Function to trigger the popup
 func _on_show_popup_button_pressed():
 	if not ui_instance:
 		# Create an instance of the UI.tscn
-		print(popup_scene)
 		ui_instance = popup_scene.instantiate()
 		add_child(ui_instance)
-	
 		ui_instance.popup_centered()
-		print("POP RAISED ")
+
 
 	
 	

@@ -6,35 +6,30 @@
 snap_2d_transforms_to_pixel = true
 snap_2d_vertices_to_pixel = true
 title = "Do You really want to Exist"
-size = Vector2i(320, 150)
+size = Vector2i(320, 80)
 visible = true
 script = ExtResource("1_fkmbb")
 
-[node name="MessageLabel" type="Label" parent="."]
-anchors_preset = -1
-anchor_left = 0.0125
-anchor_top = 0.0266667
-anchor_right = 1.085
-anchor_bottom = 1.068
-offset_right = -31.2
-offset_bottom = -14.2
-grow_horizontal = 2
-scale = Vector2(1.1, 1.1)
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 316.0
+offset_bottom = 76.0
+
+[node name="MessageLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
 text = "Do you really  wish to Exit"
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-offset_left = 4.0
-offset_top = 4.0
-offset_right = 316.0
-offset_bottom = 146.0
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
 alignment = 1
 
-[node name="ConfirmButton" type="Button" parent="HBoxContainer"]
+[node name="ConfirmButton" type="Button" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "Confirm"
 
-[node name="CancelButton" type="Button" parent="HBoxContainer"]
+[node name="CancelButton" type="Button" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "Cancel"

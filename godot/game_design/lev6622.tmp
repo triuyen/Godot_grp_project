@@ -187,9 +187,6 @@ texture = ExtResource("10_3temo")
 sources/0 = SubResource("TileSetAtlasSource_g1s0v")
 sources/1 = SubResource("TileSetAtlasSource_px7os")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_oxc3u"]
-size = Vector2(144, 128)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_ogo31"]
 atlas = ExtResource("4_swpad")
 region = Rect2(0, 0, 16, 16)
@@ -225,6 +222,9 @@ animations = [{
 "name": &"open_chest",
 "speed": 5.0
 }]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oxc3u"]
+size = Vector2(144, 128)
 
 [node name="Level2" type="Node2D"]
 
@@ -442,6 +442,12 @@ scale = Vector2(2, 2)
 tile_map_data = PackedByteArray("AACHAC8AAAACAAAAAACIAC8AAAACAAAAAACJAC8AAAACAAAAAACKAC8AAAACAAAAAACLAC8AAAACAAAAAACHADUAAAACAAAAAACIADUAAAACAAAAAACJADUAAAACAAAAAACKADUAAAACAAAAAACLADUAAAADAAIAAACLADAAAAADAAEAAACLADEAAAADAAEAAACLADIAAAADAAEAAACLADMAAAADAAEAAACLADQAAAADAAEAAABGABcAAQADAAAAAABGABgAAQAAAAEAAABGABkAAQAAAAEAAABGABoAAQADAAIAAABDABoAAQABAAMAAABEABoAAQACAAMAAABFABoAAQACAAMAAABFABcAAQACAAMAAABEABcAAQACAAMAAABDABcAAQACAAMAAAA=")
 tile_set = SubResource("TileSet_njkvw")
 
+[node name="chest_underground" type="AnimatedSprite2D" parent="."]
+position = Vector2(936, -720)
+scale = Vector2(10, 10)
+sprite_frames = SubResource("SpriteFrames_ucecb")
+animation = &"open_chest"
+
 [node name="chest" type="Area2D" parent="."]
 position = Vector2(936, -720)
 scale = Vector2(10, 10)
@@ -452,8 +458,3 @@ script = ExtResource("10_mas0u")
 position = Vector2(7.62939e-06, -7.62939e-06)
 scale = Vector2(0.0999999, 0.0999999)
 shape = SubResource("RectangleShape2D_oxc3u")
-
-[node name="chest_underground" type="AnimatedSprite2D" parent="chest"]
-scale = Vector2(1, 1)
-sprite_frames = SubResource("SpriteFrames_ucecb")
-animation = &"open_chest"

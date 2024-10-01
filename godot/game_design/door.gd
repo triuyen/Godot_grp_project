@@ -6,10 +6,7 @@ func _ready() -> void:
 	pass # Replace with function body.
 
 func _input(event):
-	if event.is_action_pressed("ui_accept"):
-		
-		if get_overlapping_areas().size() > 0:
-			print("going to next level")
+	if get_overlapping_areas().size() > 0:
 			next_level()
 
 func next_level():
