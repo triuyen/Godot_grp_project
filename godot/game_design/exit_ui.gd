@@ -1,7 +1,7 @@
-extends Panel
+extends PopupPanel
 # Declare references to the buttons and label
-@onready var confirm_button = $ConfirmButton
-@onready var cancel_button = $CancelButton
+@onready var confirm_button = $HBoxContainer/ConfirmButton
+@onready var cancel_button = $HBoxContainer/CancelButton
 
 func _ready():
 	# Connect the button signals to their respective functions

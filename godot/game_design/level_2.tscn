@@ -184,7 +184,7 @@ animation = &"open_chest"
 script = ExtResource("5_1my8c")
 
 [node name="exit" type="Area2D" parent="."]
-collision_layer = 16
+collision_layer = 264
 script = ExtResource("8_yiiv3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="exit"]
