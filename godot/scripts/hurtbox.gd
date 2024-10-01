@@ -1,6 +1,6 @@
 extends Area2D
 
-signal on_hit_taken
+signal on_hit_taken(hit_position: Vector2)
 
 @export var health: HealthComponent
 @export var sprite: AnimatedSprite2D
@@ -14,7 +14,8 @@ func _on_area_entered(area: Area2D) -> void:
 		if not can_be_hit:
 			return
 		health.take_damage(area.damage)
-		on_hit_taken.emit()
+		
+		on_hit_taken.emit(area.global_position)
 		
 		if is_instance_valid(sprite):
 			_start_blinking()

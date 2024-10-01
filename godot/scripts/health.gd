@@ -11,4 +11,3 @@ func take_damage(dmg: int):
 	hp -= dmg
 	if hp <= 0:
 		on_death.emit()
-	print(hp)
