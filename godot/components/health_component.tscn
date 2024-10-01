@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://bul2b4ejgss2c"]
+
+[ext_resource type="Script" path="res://scripts/health.gd" id="1_oheur"]
+[ext_resource type="Script" path="res://scripts/health_bar.gd" id="2_dnm12"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3dhsq"]
+bg_color = Color(1, 1, 1, 1)
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1n8ak"]
+bg_color = Color(1.08294e-06, 0.690162, 0.116675, 1)
+
+[node name="health_component" type="Node2D"]
+script = ExtResource("1_oheur")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="health_bar" type="ProgressBar" parent="Control"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -9.0
+offset_top = -19.0
+offset_right = 9.0
+offset_bottom = -17.0
+theme_override_styles/background = SubResource("StyleBoxFlat_3dhsq")
+theme_override_styles/fill = SubResource("StyleBoxFlat_1n8ak")
+value = 45.0
+show_percentage = false
+script = ExtResource("2_dnm12")
+
+[connection signal="health_updated" from="." to="Control/health_bar" method="_on_health_component_health_updated"]
