@@ -1,0 +1,37 @@
+[gd_scene load_steps=2 format=3 uid="uid://3ksrkx2k4i6f"]
+
+[ext_resource type="Script" path="res://game_design/exit_ui.gd" id="1_fkmbb"]
+
+[node name="Panel" type="Panel"]
+offset_right = 128.0
+offset_bottom = 64.0
+scale = Vector2(1.69413, 1.83904)
+script = ExtResource("1_fkmbb")
+
+[node name="MessageLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 8.0
+offset_right = 144.0
+offset_bottom = 57.0
+scale = Vector2(0.598729, 0.464008)
+text = "Do you really 
+  wish to Exit"
+
+[node name="ConfirmButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 9.44437
+offset_top = 34.8007
+offset_right = 80.4444
+offset_bottom = 65.8007
+scale = Vector2(0.629611, 0.631279)
+text = "Confirm"
+
+[node name="CancelButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 73.4444
+offset_top = 34.8007
+offset_right = 133.444
+offset_bottom = 65.8007
+scale = Vector2(0.727316, 0.651241)
+text = "Cancel"
