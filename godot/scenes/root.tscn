@@ -107,4 +107,3 @@ tile_set = SubResource("TileSet_ppck3")
 
 [node name="player" parent="." instance=ExtResource("3_gupfe")]
 position = Vector2(598, 285)
-collision_mask = 6
