@@ -1,7 +1,10 @@
-[gd_scene load_steps=57 format=3 uid="uid://b885koudadcot"]
+[gd_scene load_steps=60 format=3 uid="uid://b885koudadcot"]
 
 [ext_resource type="Texture2D" uid="uid://dhec6fqt6p5tv" path="res://assets/mystic_woods_free_2.2/sprites/characters/player.png" id="1_0yyrw"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_dp3ll"]
+[ext_resource type="Script" path="res://scripts/hitbox.gd" id="3_6cmhe"]
+[ext_resource type="PackedScene" uid="uid://kr1ih82cd4i7" path="res://components/hurtbox_coponent.tscn" id="4_k23yd"]
+[ext_resource type="PackedScene" uid="uid://bul2b4ejgss2c" path="res://components/health_component.tscn" id="5_e66l8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6sc24"]
 size = Vector2(12, 8.25)
@@ -424,6 +427,9 @@ scale = Vector2(4, 4)
 collision_mask = 6
 script = ExtResource("1_dp3ll")
 
+[node name="health_component" parent="." instance=ExtResource("5_e66l8")]
+position = Vector2(0, -2.805)
+
 [node name="shape_body" type="CollisionShape2D" parent="."]
 position = Vector2(0.25, -2.75)
 shape = SubResource("RectangleShape2D_6sc24")
@@ -438,15 +444,15 @@ drag_vertical_enabled = true
 [node name="sprite" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
 sprite_frames = SubResource("SpriteFrames_cds1d")
-animation = &"walk_up"
+animation = &"idle_down"
 autoplay = "idle_down"
 offset = Vector2(0, -16)
 
 [node name="sword_area" type="Area2D" parent="."]
-visible = false
 collision_layer = 8
 collision_mask = 0
 monitoring = false
+script = ExtResource("3_6cmhe")
 
 [node name="hit_box" type="CollisionShape2D" parent="sword_area"]
 visible = false
@@ -454,3 +460,9 @@ position = Vector2(0.375, -7.375)
 rotation = -3.14159
 scale = Vector2(1.26714, -0.896319)
 shape = SubResource("RectangleShape2D_j6c2y")
+
+[node name="hurtbox_coponent" parent="." instance=ExtResource("4_k23yd")]
+visible = false
+collision_mask = 16
+
+[connection signal="on_death" from="health_component" to="." method="die"]
