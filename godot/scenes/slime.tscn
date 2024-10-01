@@ -1,6 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://bpipg3idin6tn"]
+[gd_scene load_steps=7 format=3 uid="uid://bpipg3idin6tn"]
 
+[ext_resource type="Script" path="res://scripts/slime.gd" id="1_2xdr6"]
 [ext_resource type="SpriteFrames" uid="uid://b7n66o8op5yds" path="res://animations/slime.tres" id="1_scxw6"]
+[ext_resource type="Script" path="res://scripts/hurtbox.gd" id="2_8kyhg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c15ue"]
+size = Vector2(16.5, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wy4gk"]
+size = Vector2(15.5, 10.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iirjt"]
 size = Vector2(14, 6.25)
@@ -8,13 +16,39 @@ size = Vector2(14, 6.25)
 [node name="slime" type="CharacterBody2D"]
 scale = Vector2(4, 4)
 collision_layer = 4
+script = ExtResource("1_2xdr6")
+
+[node name="hurtbox" type="Area2D" parent="."]
+position = Vector2(0, -5.75)
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("2_8kyhg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox"]
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_c15ue")
+one_way_collision_margin = 0.0
+debug_color = Color(0.576471, 0.509804, 0.580392, 0.235294)
 
 [node name="sprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -5.75)
 sprite_frames = ExtResource("1_scxw6")
 animation = &"idle_down"
 autoplay = "idle_down"
 frame_progress = 0.381745
 
+[node name="hitbox" type="Area2D" parent="."]
+position = Vector2(0, -5.75)
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(0, 1.75)
+shape = SubResource("RectangleShape2D_wy4gk")
+debug_color = Color(0.675755, 0.500651, 0.209961, 0.42)
+
 [node name="shape_body" type="CollisionShape2D" parent="."]
-position = Vector2(0, 3.875)
+position = Vector2(0, -1.875)
 shape = SubResource("RectangleShape2D_iirjt")
+
+[connection signal="area_entered" from="hurtbox" to="hurtbox" method="_on_area_entered"]
