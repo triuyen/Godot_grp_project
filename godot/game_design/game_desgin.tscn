@@ -370,10 +370,10 @@ collision_mask = 14
 
 [node name="game_design" type="Node2D" parent="."]
 
-[node name="exteriror" type="StaticBody2D" parent="game_design"]
+[node name="exterior" type="StaticBody2D" parent="game_design"]
 collision_layer = 2
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="game_design/exteriror"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="game_design/exterior"]
 z_index = 1
 polygon = PackedVector2Array(968, -128, 960, -376, -800, -376, -800, 1104, 1824, 1096, 1848, 912, 1904, 888, 1912, 1096, 2296, 1104, 2280, -400, 1320, -376, 1352, -304, 1416, -312, 1424, -248, 1384, -232, 1432, -224, 1488, -232, 1496, -176, 1440, -160, 1432, -104, 1384, -72, 1288, -104, 1072, -88, 1104, -544, 2432, -520, 2384, 1368, -904, 1224, -896, -552, 840, -600, 1016, -512, 1032, -272, 1056, -88, 1008, -88, 976, -104)
 
