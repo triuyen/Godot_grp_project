@@ -436,6 +436,7 @@ drag_horizontal_enabled = true
 drag_vertical_enabled = true
 
 [node name="sprite" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
 sprite_frames = SubResource("SpriteFrames_cds1d")
 animation = &"walk_up"
 autoplay = "idle_down"

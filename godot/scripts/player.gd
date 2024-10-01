@@ -1,7 +1,7 @@
-extends Node2D
+extends CharacterBody2D
 
-@onready var player: CharacterBody2D = %player
-@onready var sprite: AnimatedSprite2D = %player/sprite	
+@onready var player: CharacterBody2D = self
+@onready var sprite: AnimatedSprite2D = %sprite	
 
 # constants
 const SPEED: int = 300
