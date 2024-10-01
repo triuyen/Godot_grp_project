@@ -1,5 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://bpipg3idin6tn"]
 
+[ext_resource type="Script" path="res://scripts/slime.gd" id="1_2xdr6"]
 [ext_resource type="SpriteFrames" uid="uid://b7n66o8op5yds" path="res://animations/slime.tres" id="1_scxw6"]
 [ext_resource type="PackedScene" uid="uid://kr1ih82cd4i7" path="res://components/hurtbox_coponent.tscn" id="2_8j44a"]
 [ext_resource type="PackedScene" uid="uid://culjkfcej32u3" path="res://components/hitbox_component.tscn" id="4_5h1f2"]
@@ -22,7 +23,7 @@ health = NodePath("../health_component")
 [node name="hitbox_component" parent="." instance=ExtResource("4_5h1f2")]
 
 [node name="shape_body" type="CollisionShape2D" parent="."]
-position = Vector2(0, 3.875)
+position = Vector2(0, -1.875)
 shape = SubResource("RectangleShape2D_iirjt")
 
 [node name="health_component" parent="." instance=ExtResource("5_ys8xl")]
