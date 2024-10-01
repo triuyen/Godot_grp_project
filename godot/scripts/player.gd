@@ -32,6 +32,7 @@ var is_alive = true
 
 func _ready() -> void:
 	attack_hitbox.monitorable = false
+	attack_hitbox.monitoring = false
 	dash_timer = Timer.new()
 	dash_timer.wait_time = DASH_DURATION
 	dash_timer.one_shot = true
@@ -51,6 +52,7 @@ func _physics_process(_delta: float) -> void:
 	if Input.is_action_just_pressed("player_attack") and not is_attacking:
 		is_attacking = true
 		attack_hitbox.monitorable = true
+		attack_hitbox.monitoring = true
 		sprite.play(attack_animation_name + anim_direction)
 		return 
 	
@@ -65,6 +67,7 @@ func _physics_process(_delta: float) -> void:
 		if not sprite.is_playing(): 
 			is_attacking = false  
 			attack_hitbox.monitorable = false
+			attack_hitbox.monitoring = false
 		else:
 			return  
 	
