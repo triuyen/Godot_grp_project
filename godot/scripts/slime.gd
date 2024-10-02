@@ -1,6 +1,5 @@
 extends  CharacterBody2D
 
-signal _on_start_blinking
 
 var knockback_force = 300
 var is_knocked = false
@@ -16,8 +15,6 @@ func _physics_process(delta: float) -> void:
 	
 
 func _on_hit_taken(hit_position: Vector2) -> void:
-	_on_start_blinking.emit()
-	
 	var hit_direction = (self.global_position - hit_position).normalized()
 	self.velocity = hit_direction * knockback_force
 	is_knocked = true
