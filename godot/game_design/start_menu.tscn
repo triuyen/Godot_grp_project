@@ -25,6 +25,9 @@ offset_left = 16.0
 offset_top = 8.0
 offset_right = 151.0
 offset_bottom = 40.0
+theme_override_colors/font_color = Color(0.286693, 0.501015, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0.758192, 0.758192, 0.758192, 1)
 text = "Slim and Dojon"
 horizontal_alignment = 1
 uppercase = true
@@ -35,6 +38,8 @@ offset_left = 32.0
 offset_top = 40.0
 offset_right = 128.0
 offset_bottom = 71.0
+theme_override_colors/font_disabled_color = Color(0.286275, 0.501961, 1, 1)
+theme_override_colors/font_color = Color(0.00477987, 0.209667, 0.879101, 1)
 text = "Start"
 
 [node name="Option_btn" type="Button" parent="."]
@@ -43,6 +48,7 @@ offset_left = 32.0
 offset_top = 80.0
 offset_right = 128.0
 offset_bottom = 111.0
+theme_override_colors/font_color = Color(0.00392157, 0.207843, 0.878431, 1)
 text = "Options"
 
 [node name="Quit_btn" type="Button" parent="."]
@@ -51,6 +57,7 @@ offset_left = 32.0
 offset_top = 120.0
 offset_right = 128.0
 offset_bottom = 151.0
+theme_override_colors/font_color = Color(0.00392157, 0.207843, 0.878431, 1)
 text = "Quit"
 
 [connection signal="pressed" from="Start_btn" to="." method="_on_StartButton_pressed"]
