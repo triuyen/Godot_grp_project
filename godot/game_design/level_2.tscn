@@ -454,6 +454,5 @@ scale = Vector2(0.0999999, 0.0999999)
 shape = SubResource("RectangleShape2D_oxc3u")
 
 [node name="chest_underground" type="AnimatedSprite2D" parent="chest"]
-scale = Vector2(1, 1)
 sprite_frames = SubResource("SpriteFrames_ucecb")
 animation = &"open_chest"

@@ -1,0 +1,57 @@
+[gd_scene load_steps=2 format=3 uid="uid://1tc20pgkyuof"]
+
+[ext_resource type="Script" path="res://game_design/start_menu.gd" id="1_kwkim"]
+
+[node name="StartMenu" type="Control"]
+custom_minimum_size = Vector2(0.5, 0.5)
+layout_mode = 3
+anchors_preset = 0
+offset_left = 416.0
+offset_top = 112.0
+offset_right = 456.0
+offset_bottom = 152.0
+scale = Vector2(2, 2)
+script = ExtResource("1_kwkim")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 160.0
+offset_bottom = 168.0
+color = Color(0.725485, 0.775877, 0.612065, 1)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 8.0
+offset_right = 151.0
+offset_bottom = 40.0
+text = "Slim and Dojon"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="Start_btn" type="Button" parent="."]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 40.0
+offset_right = 128.0
+offset_bottom = 71.0
+text = "Start"
+
+[node name="Option_btn" type="Button" parent="."]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 80.0
+offset_right = 128.0
+offset_bottom = 111.0
+text = "Options"
+
+[node name="Quit_btn" type="Button" parent="."]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 120.0
+offset_right = 128.0
+offset_bottom = 151.0
+text = "Quit"
+
+[connection signal="pressed" from="Start_btn" to="." method="_on_StartButton_pressed"]
+[connection signal="pressed" from="Quit_btn" to="." method="_on_QuitButton_pressed"]
