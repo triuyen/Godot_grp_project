@@ -223,7 +223,8 @@ script = ExtResource("1_kwkim")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 0
-offset_right = 160.0
+offset_left = -16.0
+offset_right = 176.0
 offset_bottom = 140.0
 color = Color(0.725485, 0.775877, 0.612065, 1)
 
@@ -240,14 +241,13 @@ tile_set = SubResource("TileSet_q8t8e")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
-offset_left = 16.0
 offset_top = 8.0
-offset_right = 151.0
+offset_right = 156.0
 offset_bottom = 40.0
 theme_override_colors/font_color = Color(0.286693, 0.501015, 1, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0.758192, 0.758192, 0.758192, 1)
-text = "Slim and Dojon"
+text = "Slim and Dungeon"
 horizontal_alignment = 1
 uppercase = true
 
