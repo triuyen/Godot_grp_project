@@ -98,7 +98,7 @@ func _process(_delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	player.move_and_slide()
 	
-func die() -> void:		
+func die() -> void:        
 	player.is_alive = false
 	sprite.play("death")
 	await get_tree().create_timer(2).timeout
@@ -122,7 +122,7 @@ func start_dash() -> void:
 	else:
 		dash_direction = Vector2(1, 0)
 	
-	player.velocity = dash_direction * DASH_SPEED	
+	player.velocity = dash_direction * DASH_SPEED    
 	await get_tree().create_timer(0.1).timeout
 	_end_dash()
 	
@@ -130,3 +130,6 @@ func start_dash() -> void:
 func _end_dash() -> void:
 	is_dashing = false
 	player.velocity =  Vector2.ZERO
+
+#func _on_health_component_on_damage() -> void:
+	#pass

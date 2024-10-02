@@ -10,6 +10,7 @@ func _ready():
 	# Connect the signal for when the animation finishes
 	animated_sprite.connect("animation_finished",Callable( self, "_on_animation_finished"))
 
+
 # Detect left mouse click
 func _input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
@@ -17,7 +18,6 @@ func _input(event):
 			animated_sprite.play("open_chest")  # Play your animation
 			animation_playing = true  # Set flag to indicate animation is playing
 			print("Left mouse button clicked, animation triggered")
-
 # Function triggered when an object enters the collision area
 func _on_body_entered(body):
 	print("Body entered: ", body.name)

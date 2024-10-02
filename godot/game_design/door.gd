@@ -5,10 +5,10 @@ extends Area2D
 func _ready() -> void:
 	pass # Replace with function body.
 
-func _input(event):
-	if get_overlapping_areas().size() > 0:
-			next_level()
-
+func _on_Area2D_body_entered(body):
+	if body.name == "player":  # Check for a specific object by name
+		next_level()
+		
 func next_level():
 	var ERR = get_tree().change_scene_to_file("res://game_design/level_2.tscn")
 	

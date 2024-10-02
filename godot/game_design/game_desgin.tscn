@@ -1,5 +1,6 @@
-[gd_scene load_steps=14 format=4 uid="uid://bssqudvpnv6pv"]
+[gd_scene load_steps=15 format=4 uid="uid://bssqudvpnv6pv"]
 
+[ext_resource type="PackedScene" uid="uid://bpipg3idin6tn" path="res://scenes/slime.tscn" id="1_rgpny"]
 [ext_resource type="Texture2D" uid="uid://5voqq1eucswb" path="res://assets/mystic_woods_free_2.2/sprites/tilesets/plains.png" id="2_76kwq"]
 [ext_resource type="PackedScene" uid="uid://b885koudadcot" path="res://scenes/player.tscn" id="3_gupfe"]
 [ext_resource type="Texture2D" uid="uid://b8o2ohvyxxj8k" path="res://assets/mystic_woods_free_2.2/sprites/tilesets/walls/walls.png" id="4_r63k2"]
@@ -214,8 +215,31 @@ sources/3 = SubResource("TileSetAtlasSource_qn00n")
 y_sort_enabled = true
 position = Vector2(888, -64)
 
+[node name="slime" parent="." instance=ExtResource("1_rgpny")]
+position = Vector2(-405, -19)
+
+[node name="slime2" parent="." instance=ExtResource("1_rgpny")]
+position = Vector2(925, -148)
+
+[node name="slime3" parent="." instance=ExtResource("1_rgpny")]
+position = Vector2(574, 469)
+
+[node name="slime4" parent="." instance=ExtResource("1_rgpny")]
+position = Vector2(-184, 787)
+
+[node name="slime5" parent="." instance=ExtResource("1_rgpny")]
+position = Vector2(895, 898)
+
+[node name="slime6" parent="." instance=ExtResource("1_rgpny")]
+position = Vector2(595, -82)
+
+[node name="slime7" parent="." instance=ExtResource("1_rgpny")]
+position = Vector2(414, -190)
+
+[node name="slime8" parent="." instance=ExtResource("1_rgpny")]
+position = Vector2(414, -190)
+
 [node name="player" parent="." instance=ExtResource("3_gupfe")]
-unique_name_in_owner = true
 z_index = 2
 position = Vector2(368, -48)
 collision_mask = 14
@@ -317,3 +341,5 @@ script = ExtResource("8_usiig")
 position = Vector2(1800, -8)
 scale = Vector2(8.5, 8.5)
 shape = SubResource("CircleShape2D_6hxmo")
+
+[connection signal="body_entered" from="game_design/level_1/door" to="game_design/level_1/door" method="_on_Area2D_body_entered"]
