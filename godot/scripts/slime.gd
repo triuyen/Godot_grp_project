@@ -1,15 +1,24 @@
 extends  CharacterBody2D
 
+@export var has_infinite_vision = false
+@export var speed: float = 100
 
 var knockback_force = 300
 var is_knocked = false
+var target: CharacterBody2D
+
+func _ready() -> void:
+	if has_infinite_vision:
+		target = %player
 
 func _process(delta: float) -> void:
 	if is_knocked:
 		return
 	# move direction
-	pass
-
+	if is_instance_valid(target):
+		var direction_vector = (target.global_position - self.global_position).normalized()
+		self.velocity = direction_vector * speed
+	
 func _physics_process(delta: float) -> void:
 	self.move_and_slide()
 	
@@ -30,3 +39,5 @@ func _on_death() -> void:
 	tween.tween_property(%sprite, "scale", Vector2(), 0.3)
 	tween.tween_callback(queue_free)
 	
+#func _on_player_detected(area: Area2D) -> void:
+	#target = area.global_position

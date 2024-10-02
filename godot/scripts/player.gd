@@ -2,19 +2,19 @@ extends CharacterBody2D
 
 @onready var player: CharacterBody2D = self
 @onready var sprite: AnimatedSprite2D = %sprite    
-@onready var health_bar: ProgressBar = %health_bar
 
 # constants
 const SPEED: int = 300
 const DASH_SPEED: int = 1000
 const DASH_DURATION: float = 1
-
+	
 # stats 
 var damage_amount: int = 20
 
 var direction: Vector2
 var flip_x = false
 var anim_direction: String = "down"
+var slow_ratio: float = 1.0
 
 # attack variables
 var is_attacking = false
@@ -32,10 +32,9 @@ var is_alive = true
 func _ready() -> void:
 	attack_hitbox.monitorable = false
 	attack_hitbox.monitoring = false
-	pass
+	SignalBus.slow_player.connect(func (ratio, time): slow_player(ratio, time))
 
 func _process(_delta: float) -> void:
-	
 	if not is_alive : return 
 		
 	# attack
@@ -75,7 +74,7 @@ func _process(_delta: float) -> void:
 	var input_vector = Vector2(input_x, input_y).normalized()
 	direction = input_vector
 	
-	player.velocity = input_vector * SPEED
+	player.velocity = input_vector * SPEED * slow_ratio
 
 	# animation
 	var base_anim = "idle_" if direction == Vector2.ZERO else "walk_"
@@ -126,7 +125,11 @@ func start_dash() -> void:
 	await get_tree().create_timer(0.1).timeout
 	_end_dash()
 	
-
 func _end_dash() -> void:
 	is_dashing = false
 	player.velocity =  Vector2.ZERO
+	
+func slow_player(ratio: float, time: float):
+	slow_ratio = 1 - ratio
+	await get_tree().create_timer(time).timeout
+	slow_ratio = 1

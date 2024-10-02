@@ -1,0 +1,56 @@
+[gd_scene load_steps=10 format=3 uid="uid://ojgil16nsd3"]
+
+[ext_resource type="Script" path="res://scripts/slime.gd" id="1_vbxpi"]
+[ext_resource type="PackedScene" uid="uid://kr1ih82cd4i7" path="res://components/hurtbox_coponent.tscn" id="2_d1pwc"]
+[ext_resource type="PackedScene" uid="uid://culjkfcej32u3" path="res://components/hitbox_component.tscn" id="3_te7c0"]
+[ext_resource type="PackedScene" uid="uid://bul2b4ejgss2c" path="res://components/health_component.tscn" id="4_x3j34"]
+[ext_resource type="PackedScene" uid="uid://bgymceix1esb6" path="res://components/blinking_component.tscn" id="5_fhisc"]
+[ext_resource type="SpriteFrames" uid="uid://b7n66o8op5yds" path="res://animations/slime.tres" id="6_k1sr0"]
+[ext_resource type="PackedScene" uid="uid://ciyn35f1nowm1" path="res://components/blinding_component.tscn" id="7_oqlql"]
+[ext_resource type="PackedScene" uid="uid://cxeutdrdrqxm0" path="res://components/slowing_component.tscn" id="8_lfxjc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iirjt"]
+size = Vector2(14, 6.25)
+
+[node name="slime" type="CharacterBody2D"]
+scale = Vector2(4, 4)
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_vbxpi")
+has_infinite_vision = true
+
+[node name="hurtbox_coponent" parent="." node_paths=PackedStringArray("health") instance=ExtResource("2_d1pwc")]
+health = NodePath("../health_component")
+invincibility_timer = 0.0
+
+[node name="hitbox_component" parent="." instance=ExtResource("3_te7c0")]
+collision_mask = 1
+dies_on_hit = true
+
+[node name="shape_body" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1.875)
+shape = SubResource("RectangleShape2D_iirjt")
+
+[node name="health_component" parent="." instance=ExtResource("4_x3j34")]
+
+[node name="blinking_component" parent="." instance=ExtResource("5_fhisc")]
+
+[node name="sprite" type="AnimatedSprite2D" parent="blinking_component"]
+unique_name_in_owner = true
+position = Vector2(0, -5.75)
+sprite_frames = ExtResource("6_k1sr0")
+animation = &"idle_down"
+autoplay = "idle_down"
+
+[node name="blinding_component" parent="." instance=ExtResource("7_oqlql")]
+
+[node name="slowing_component" parent="." instance=ExtResource("8_lfxjc")]
+slow_ratio = 0.5
+
+[connection signal="on_hit_taken" from="hurtbox_coponent" to="." method="_on_hit_taken"]
+[connection signal="on_hit_taken" from="hurtbox_coponent" to="blinking_component" method="_on_hit_taken"]
+[connection signal="_on_dies_on_hit" from="hitbox_component" to="health_component" method="_on_dies_on_hit"]
+[connection signal="body_entered" from="hitbox_component" to="hitbox_component" method="_on_body_entered"]
+[connection signal="body_entered" from="hitbox_component" to="blinding_component" method="_on_player_hit"]
+[connection signal="body_entered" from="hitbox_component" to="slowing_component" method="_on_player_hit"]
+[connection signal="on_death" from="health_component" to="." method="_on_death"]

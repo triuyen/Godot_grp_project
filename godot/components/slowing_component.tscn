@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cxeutdrdrqxm0"]
+
+[ext_resource type="Script" path="res://scripts/slowing.gd" id="1_lcda4"]
+
+[node name="slowing_component" type="Node"]
+script = ExtResource("1_lcda4")

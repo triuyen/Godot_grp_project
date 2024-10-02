@@ -17,3 +17,7 @@ func take_damage(dmg: int):
 	health_updated.emit(hp)
 	if hp <= 0:
 		on_death.emit()
+
+
+func _on_dies_on_hit() -> void:
+	on_death.emit()
