@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=4 uid="uid://bbhwgvsatco73"]
+[gd_scene load_steps=28 format=4 uid="uid://bbhwgvsatco73"]
 
 [ext_resource type="Texture2D" uid="uid://c1d6qr3nb12v5" path="res://assets/mystic_woods_free_2.2/sprites/tilesets/floors/carpet.png" id="1_17lxu"]
 [ext_resource type="Texture2D" uid="uid://bww73fmc81fgj" path="res://assets/mystic_woods_free_2.2/sprites/tilesets/floors/flooring.png" id="2_pv4cw"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dr7cw4mkjbm8s" path="res://assets/mystic_woods_free_2.2/sprites/objects/chest_01.png" id="4_swpad"]
 [ext_resource type="Texture2D" uid="uid://cylvhmegyrj84" path="res://assets/mystic_woods_free_2.2/sprites/tilesets/walls/wooden_door.png" id="5_3840s"]
 [ext_resource type="PackedScene" uid="uid://b885koudadcot" path="res://scenes/player.tscn" id="7_lbry4"]
+[ext_resource type="Texture2D" uid="uid://cyflrgy00n2tw" path="res://assets/mystic_woods_free_2.2/stencil_darkness.png" id="7_snx1k"]
 [ext_resource type="Script" path="res://game_design/exit.gd" id="8_yiiv3"]
 [ext_resource type="PackedScene" uid="uid://bpipg3idin6tn" path="res://scenes/slime.tscn" id="10_0gqed"]
 [ext_resource type="Texture2D" uid="uid://bx330hm5sbkp7" path="res://assets/mystic_woods_free_2.2/sprites/tilesets/fences.png" id="10_3temo"]
@@ -251,6 +252,17 @@ unique_name_in_owner = true
 z_index = 2
 position = Vector2(2208, -680)
 collision_mask = 14
+
+[node name="Area2D" type="Area2D" parent="player"]
+position = Vector2(-552, 170)
+scale = Vector2(-16.6957, 9.52955)
+
+[node name="Sprite2D" type="Sprite2D" parent="player/Area2D"]
+z_index = 2
+position = Vector2(-45.341, -32.8452)
+scale = Vector2(0.00345882, 0.00540158)
+texture = ExtResource("7_snx1k")
+centered = false
 
 [node name="exteriror_walls" type="StaticBody2D" parent="."]
 collision_layer = 2
