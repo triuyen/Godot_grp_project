@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ciyn35f1nowm1"]
+
+[ext_resource type="Script" path="res://scripts/blinding.gd" id="1_hfr2w"]
+
+[node name="blinding_component" type="Node"]
+script = ExtResource("1_hfr2w")
