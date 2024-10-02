@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://culjkfcej32u3" path="res://components/hitbox_component.tscn" id="4_5h1f2"]
 [ext_resource type="PackedScene" uid="uid://bgymceix1esb6" path="res://components/blinking_component.tscn" id="5_a7dc6"]
 [ext_resource type="PackedScene" uid="uid://bul2b4ejgss2c" path="res://components/health_component.tscn" id="5_ys8xl"]
+[ext_resource type="Script" path="res://scripts/blinking.gd" id="6_iix36"]
+[ext_resource type="PackedScene" uid="uid://d31kti3i03we7" path="res://components/shooter_component.tscn" id="7_uapys"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iirjt"]
 size = Vector2(14, 6.25)
@@ -20,6 +22,7 @@ script = ExtResource("1_2xdr6")
 health = NodePath("../health_component")
 
 [node name="hitbox_component" parent="." instance=ExtResource("4_5h1f2")]
+position = Vector2(-0.25, -5.75)
 
 [node name="shape_body" type="CollisionShape2D" parent="."]
 position = Vector2(0, -1.875)
@@ -41,3 +44,5 @@ frame_progress = 0.381745
 [connection signal="on_hit_taken" from="hurtbox_coponent" to="blinking_component" method="_on_hit_taken"]
 [connection signal="area_entered" from="hitbox_component" to="." method="_on_player_hit"]
 [connection signal="on_death" from="health_component" to="." method="_on_death"]
+[node name="shooter_component" parent="." instance=ExtResource("7_uapys")]
+position = Vector2(0, -4.75)
