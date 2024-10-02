@@ -1,6 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://bpipg3idin6tn"]
+[gd_scene load_steps=8 format=3 uid="uid://bpipg3idin6tn"]
 
+[ext_resource type="Script" path="res://scripts/slime.gd" id="1_2xdr6"]
 [ext_resource type="SpriteFrames" uid="uid://b7n66o8op5yds" path="res://animations/slime.tres" id="1_scxw6"]
+[ext_resource type="PackedScene" uid="uid://kr1ih82cd4i7" path="res://components/hurtbox_coponent.tscn" id="2_8j44a"]
+[ext_resource type="PackedScene" uid="uid://culjkfcej32u3" path="res://components/hitbox_component.tscn" id="4_5h1f2"]
+[ext_resource type="PackedScene" uid="uid://bgymceix1esb6" path="res://components/blinking_component.tscn" id="5_a7dc6"]
+[ext_resource type="PackedScene" uid="uid://bul2b4ejgss2c" path="res://components/health_component.tscn" id="5_ys8xl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iirjt"]
 size = Vector2(14, 6.25)
@@ -8,13 +13,31 @@ size = Vector2(14, 6.25)
 [node name="slime" type="CharacterBody2D"]
 scale = Vector2(4, 4)
 collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_2xdr6")
 
-[node name="sprite" type="AnimatedSprite2D" parent="."]
+[node name="hurtbox_coponent" parent="." node_paths=PackedStringArray("health") instance=ExtResource("2_8j44a")]
+health = NodePath("../health_component")
+
+[node name="hitbox_component" parent="." instance=ExtResource("4_5h1f2")]
+
+[node name="shape_body" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1.875)
+shape = SubResource("RectangleShape2D_iirjt")
+
+[node name="health_component" parent="." instance=ExtResource("5_ys8xl")]
+
+[node name="blinking_component" parent="." instance=ExtResource("5_a7dc6")]
+
+[node name="sprite" type="AnimatedSprite2D" parent="blinking_component"]
+unique_name_in_owner = true
+position = Vector2(0, -5.75)
 sprite_frames = ExtResource("1_scxw6")
 animation = &"idle_down"
 autoplay = "idle_down"
 frame_progress = 0.381745
 
-[node name="shape_body" type="CollisionShape2D" parent="."]
-position = Vector2(0, 3.875)
-shape = SubResource("RectangleShape2D_iirjt")
+[connection signal="on_hit_taken" from="hurtbox_coponent" to="." method="_on_hit_taken"]
+[connection signal="on_hit_taken" from="hurtbox_coponent" to="blinking_component" method="_on_hit_taken"]
+[connection signal="area_entered" from="hitbox_component" to="." method="_on_player_hit"]
+[connection signal="on_death" from="health_component" to="." method="_on_death"]
