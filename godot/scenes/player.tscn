@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_dp3ll"]
 [ext_resource type="Script" path="res://scripts/hitbox.gd" id="3_6cmhe"]
 [ext_resource type="Script" path="res://scripts/player_camera.gd" id="3_6ifvp"]
-[ext_resource type="PackedScene" uid="uid://cuolex4mbt1r8" path="res://components/stamina_component.tscn" id="3_qbfto"]
+[ext_resource type="PackedScene" path="res://components/stamina_component.tscn" id="3_qbfto"]
 [ext_resource type="PackedScene" uid="uid://kr1ih82cd4i7" path="res://components/hurtbox_coponent.tscn" id="4_k23yd"]
 [ext_resource type="PackedScene" uid="uid://bul2b4ejgss2c" path="res://components/health_component.tscn" id="5_e66l8"]
 [ext_resource type="PackedScene" uid="uid://bgymceix1esb6" path="res://components/blinking_component.tscn" id="5_wq213"]
