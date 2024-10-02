@@ -25,6 +25,7 @@ var attack_offset = 8
 # dash
 var is_dashing = false
 var dash_timer = Timer
+signal has_dashed
 
 # states variables
 var is_alive = true
@@ -40,6 +41,7 @@ func _process(_delta: float) -> void:
 		
 	# attack
 	if Input.is_action_just_pressed("player_attack") and not is_attacking:
+		player.velocity =  Vector2.ZERO
 		is_attacking = true
 		attack_hitbox.monitorable = true
 		attack_hitbox.monitoring = true
