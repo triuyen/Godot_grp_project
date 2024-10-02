@@ -1,14 +1,27 @@
-[gd_scene load_steps=61 format=3 uid="uid://b885koudadcot"]
+[gd_scene load_steps=64 format=3 uid="uid://b885koudadcot"]
 
 [ext_resource type="Texture2D" uid="uid://dhec6fqt6p5tv" path="res://assets/mystic_woods_free_2.2/sprites/characters/player.png" id="1_0yyrw"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_dp3ll"]
 [ext_resource type="Script" path="res://scripts/hitbox.gd" id="3_6cmhe"]
+[ext_resource type="Script" path="res://scripts/player_camera.gd" id="3_6ifvp"]
 [ext_resource type="PackedScene" uid="uid://kr1ih82cd4i7" path="res://components/hurtbox_coponent.tscn" id="4_k23yd"]
 [ext_resource type="PackedScene" uid="uid://bul2b4ejgss2c" path="res://components/health_component.tscn" id="5_e66l8"]
 [ext_resource type="PackedScene" uid="uid://bgymceix1esb6" path="res://components/blinking_component.tscn" id="5_wq213"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6sc24"]
 size = Vector2(12, 8.25)
+
+[sub_resource type="Gradient" id="Gradient_q4erg"]
+offsets = PackedFloat32Array(0, 0.0573477, 0.261649)
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 0.416, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_iwjl2"]
+gradient = SubResource("Gradient_q4erg")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+metadata/_snap_enabled = true
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j6c2y"]
 size = Vector2(13.2187, 17.5719)
@@ -435,12 +448,30 @@ position = Vector2(0, -2.805)
 position = Vector2(0.25, -2.75)
 shape = SubResource("RectangleShape2D_6sc24")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-visible = false
+[node name="player_camera" type="Camera2D" parent="."]
 scale = Vector2(0.25, 0.25)
 position_smoothing_enabled = true
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
+script = ExtResource("3_6ifvp")
+
+[node name="blind_texture" type="Control" parent="player_camera"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = -599.0
+offset_top = -299.0
+offset_right = 600.0
+offset_bottom = 300.0
+
+[node name="TextureRect" type="TextureRect" parent="player_camera/blind_texture"]
+z_index = 1000
+layout_mode = 0
+offset_left = -331.0
+offset_top = -206.0
+offset_right = 1534.0
+offset_bottom = 808.0
+texture = SubResource("GradientTexture2D_iwjl2")
 
 [node name="sword_area" type="Area2D" parent="."]
 collision_layer = 8
