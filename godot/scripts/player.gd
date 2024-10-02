@@ -3,6 +3,7 @@ extends CharacterBody2D
 @onready var player: CharacterBody2D = self
 @onready var sprite: AnimatedSprite2D = %sprite    
 @onready var health_bar: ProgressBar = %health_bar
+@onready var stamina_component: StaminaComponent = $stamina_component
 
 # constants
 const SPEED: int = 300
@@ -112,6 +113,10 @@ func show_game_over() -> void:
 	pass
 
 func start_dash() -> void:
+	
+	if ask_for_stamina() == false:
+		return
+		
 	is_dashing = true
 	var dash_direction = Vector2()
 	
@@ -132,3 +137,11 @@ func start_dash() -> void:
 func _end_dash() -> void:
 	is_dashing = false
 	player.velocity =  Vector2.ZERO
+	has_dashed.emit()
+	
+func ask_for_stamina() -> bool:
+	if(stamina_component.stamina > 0):
+		return true
+	else:
+		print("Vous n'avez pas assez de stamina.")
+		return false
