@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=4 uid="uid://bbhwgvsatco73"]
+[gd_scene load_steps=27 format=4 uid="uid://bbhwgvsatco73"]
 
 [ext_resource type="Texture2D" uid="uid://c1d6qr3nb12v5" path="res://assets/mystic_woods_free_2.2/sprites/tilesets/floors/carpet.png" id="1_17lxu"]
 [ext_resource type="Texture2D" uid="uid://bww73fmc81fgj" path="res://assets/mystic_woods_free_2.2/sprites/tilesets/floors/flooring.png" id="2_pv4cw"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cylvhmegyrj84" path="res://assets/mystic_woods_free_2.2/sprites/tilesets/walls/wooden_door.png" id="5_3840s"]
 [ext_resource type="PackedScene" uid="uid://b885koudadcot" path="res://scenes/player.tscn" id="7_lbry4"]
 [ext_resource type="Script" path="res://game_design/exit.gd" id="8_yiiv3"]
+[ext_resource type="PackedScene" uid="uid://bpipg3idin6tn" path="res://scenes/slime.tscn" id="10_0gqed"]
 [ext_resource type="Texture2D" uid="uid://bx330hm5sbkp7" path="res://assets/mystic_woods_free_2.2/sprites/tilesets/fences.png" id="10_3temo"]
 [ext_resource type="Script" path="res://game_design/l.gd" id="10_mas0u"]
 
@@ -455,5 +456,29 @@ shape = SubResource("RectangleShape2D_oxc3u")
 [node name="chest_underground" type="AnimatedSprite2D" parent="chest"]
 sprite_frames = SubResource("SpriteFrames_ucecb")
 animation = &"open_chest"
+
+[node name="chest2" type="Area2D" parent="."]
+position = Vector2(1222, 892)
+scale = Vector2(8.65791, 8.23746)
+collision_layer = 64
+script = ExtResource("10_mas0u")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="chest2"]
+position = Vector2(7.62939e-06, -7.62939e-06)
+scale = Vector2(0.0999999, 0.0999999)
+shape = SubResource("RectangleShape2D_oxc3u")
+
+[node name="chest_underground" type="AnimatedSprite2D" parent="chest2"]
+sprite_frames = SubResource("SpriteFrames_ucecb")
+animation = &"open_chest"
+
+[node name="slime" parent="." instance=ExtResource("10_0gqed")]
+position = Vector2(905, 48)
+
+[node name="slime2" parent="." instance=ExtResource("10_0gqed")]
+position = Vector2(1581, -504)
+
+[node name="slime3" parent="." instance=ExtResource("10_0gqed")]
+position = Vector2(1629, 848)
 
 [connection signal="body_entered" from="exit" to="exit" method="_on_Area2D_body_entered"]
