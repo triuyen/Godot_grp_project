@@ -41,6 +41,7 @@ func _process(_delta: float) -> void:
 		
 	# attack
 	if Input.is_action_just_pressed("player_attack") and not is_attacking:
+		%attack_sound.play()
 		player.velocity =  Vector2.ZERO
 		is_attacking = true
 		attack_hitbox.monitorable = true

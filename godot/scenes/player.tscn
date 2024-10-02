@@ -8,8 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://kr1ih82cd4i7" path="res://components/hurtbox_coponent.tscn" id="4_k23yd"]
 [ext_resource type="PackedScene" uid="uid://bul2b4ejgss2c" path="res://components/health_component.tscn" id="5_e66l8"]
 [ext_resource type="PackedScene" uid="uid://bgymceix1esb6" path="res://components/blinking_component.tscn" id="5_wq213"]
-[ext_resource type="AudioStream" uid="uid://d4jvs3oo8l8ql" path="res://assets/sounds/player_hit.wav" id="9_i4rxa"]
-[ext_resource type="Script" path="res://scripts/hurt_sound.gd" id="10_oku3n"]
+[ext_resource type="PackedScene" uid="uid://cu6aeic6slws2" path="res://components/hurt_sound_component.tscn" id="9_56imi"]
+[ext_resource type="AudioStream" uid="uid://csbhkibovrnnx" path="res://assets/sounds/attack.wav" id="10_7p3ju"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6sc24"]
 size = Vector2(12, 8.25)
@@ -506,11 +506,12 @@ collision_layer = 65536
 collision_mask = 16
 health = NodePath("../health_component")
 
-[node name="hurt_sound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("9_i4rxa")
-script = ExtResource("10_oku3n")
+[node name="hurt_sound" parent="." instance=ExtResource("9_56imi")]
+
+[node name="attack_sound" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("10_7p3ju")
 
 [connection signal="has_dashed" from="." to="stamina_component" method="_on_player_has_dashed"]
 [connection signal="on_death" from="health_component" to="." method="die"]
 [connection signal="on_hit_taken" from="hurtbox_coponent" to="blinking_component" method="_on_hit_taken"]
-[connection signal="on_hit_taken" from="hurtbox_coponent" to="hurt_sound" method="_on_hurtbox_coponent_on_hit_taken"]
