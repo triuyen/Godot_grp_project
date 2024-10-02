@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://cuolex4mbt1r8"]
+
+[ext_resource type="Script" path="res://scripts/stamina.gd" id="1_s57gr"]
+[ext_resource type="Script" path="res://scripts/stamina_bar.gd" id="2_bckpu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mbuku"]
+bg_color = Color(1, 1, 1, 1)
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t8l2f"]
+bg_color = Color(0.897899, 0.685653, 7.70092e-07, 1)
+
+[node name="stamina_component" type="Node2D"]
+script = ExtResource("1_s57gr")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="stamina_bar" type="ProgressBar" parent="Control"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -9.0
+offset_top = -17.0
+offset_right = 9.0
+offset_bottom = -16.0
+theme_override_styles/background = SubResource("StyleBoxFlat_mbuku")
+theme_override_styles/fill = SubResource("StyleBoxFlat_t8l2f")
+value = 45.0
+rounded = true
+show_percentage = false
+script = ExtResource("2_bckpu")
+
+[node name="Timer" type="Timer" parent="."]
+unique_name_in_owner = true
+autostart = true
+
+[connection signal="stamina_updated" from="." to="Control/stamina_bar" method="_on_stamina_component_stamina_updated"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
