@@ -81,6 +81,7 @@ sprint={
 2d_physics/layer_4="door"
 2d_physics/layer_5="exit"
 2d_physics/layer_6="chest"
+2d_physics/layer_7="rocks_platform"
 
 [rendering]
 
