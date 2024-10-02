@@ -1,0 +1,49 @@
+[gd_scene load_steps=9 format=3 uid="uid://dgbnj0pgw0tjc"]
+
+[ext_resource type="Script" path="res://scripts/slime.gd" id="1_l4ayc"]
+[ext_resource type="PackedScene" uid="uid://kr1ih82cd4i7" path="res://components/hurtbox_coponent.tscn" id="2_ocgs5"]
+[ext_resource type="PackedScene" uid="uid://culjkfcej32u3" path="res://components/hitbox_component.tscn" id="3_3hj8k"]
+[ext_resource type="PackedScene" uid="uid://bul2b4ejgss2c" path="res://components/health_component.tscn" id="4_ocpd1"]
+[ext_resource type="PackedScene" uid="uid://bgymceix1esb6" path="res://components/blinking_component.tscn" id="5_5a7op"]
+[ext_resource type="SpriteFrames" uid="uid://b7n66o8op5yds" path="res://animations/slime.tres" id="6_434pe"]
+[ext_resource type="PackedScene" uid="uid://db7iiqivly0g8" path="res://components/detection_component.tscn" id="7_aiapl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iirjt"]
+size = Vector2(14, 6.25)
+
+[node name="slime" type="CharacterBody2D"]
+scale = Vector2(4, 4)
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_l4ayc")
+
+[node name="hurtbox_coponent" parent="." node_paths=PackedStringArray("health") instance=ExtResource("2_ocgs5")]
+health = NodePath("../health_component")
+invincibility_timer = 0.0
+
+[node name="hitbox_component" parent="." instance=ExtResource("3_3hj8k")]
+
+[node name="shape_body" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1.875)
+shape = SubResource("RectangleShape2D_iirjt")
+
+[node name="health_component" parent="." instance=ExtResource("4_ocpd1")]
+
+[node name="blinking_component" parent="." instance=ExtResource("5_5a7op")]
+
+[node name="sprite" type="AnimatedSprite2D" parent="blinking_component"]
+unique_name_in_owner = true
+position = Vector2(0, -5.75)
+sprite_frames = ExtResource("6_434pe")
+animation = &"move_down"
+autoplay = "idle_down"
+frame_progress = 0.583219
+
+[node name="detection_component" parent="." instance=ExtResource("7_aiapl")]
+collision_layer = 0
+
+[connection signal="on_hit_taken" from="hurtbox_coponent" to="." method="_on_hit_taken"]
+[connection signal="on_hit_taken" from="hurtbox_coponent" to="blinking_component" method="_on_hit_taken"]
+[connection signal="area_entered" from="hitbox_component" to="." method="_on_player_hit"]
+[connection signal="on_death" from="health_component" to="." method="_on_death"]
+[connection signal="area_entered" from="detection_component" to="." method="_on_player_detected"]
