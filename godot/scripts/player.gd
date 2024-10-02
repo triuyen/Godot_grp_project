@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 @onready var player: CharacterBody2D = self
 @onready var sprite: AnimatedSprite2D = %sprite    
+@onready var stamina_component: StaminaComponent = $stamina_component
 
 # constants
 const SPEED: int = 300
@@ -25,6 +26,7 @@ var attack_offset = 8
 # dash
 var is_dashing = false
 var dash_timer = Timer
+signal has_dashed
 
 # states variables
 var is_alive = true
@@ -39,6 +41,7 @@ func _process(_delta: float) -> void:
 		
 	# attack
 	if Input.is_action_just_pressed("player_attack") and not is_attacking:
+		player.velocity =  Vector2.ZERO
 		is_attacking = true
 		attack_hitbox.monitorable = true
 		attack_hitbox.monitoring = true
@@ -109,6 +112,10 @@ func show_game_over() -> void:
 	pass
 
 func start_dash() -> void:
+	
+	if ask_for_stamina() == false:
+		return
+		
 	is_dashing = true
 	var dash_direction = Vector2()
 	
@@ -133,3 +140,11 @@ func slow_player(ratio: float, time: float):
 	slow_ratio = 1 - ratio
 	await get_tree().create_timer(time).timeout
 	slow_ratio = 1
+	has_dashed.emit()
+	
+func ask_for_stamina() -> bool:
+	if(stamina_component.stamina > 0):
+		return true
+	else:
+		print("Vous n'avez pas assez de stamina.")
+		return false
