@@ -8,9 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://b885koudadcot" path="res://scenes/player.tscn" id="7_lbry4"]
 [ext_resource type="Texture2D" uid="uid://cyflrgy00n2tw" path="res://assets/mystic_woods_free_2.2/stencil_darkness.png" id="7_snx1k"]
 [ext_resource type="Script" path="res://game_design/exit.gd" id="8_yiiv3"]
-[ext_resource type="PackedScene" uid="uid://bpipg3idin6tn" path="res://scenes/slime.tscn" id="10_0gqed"]
 [ext_resource type="Texture2D" uid="uid://bx330hm5sbkp7" path="res://assets/mystic_woods_free_2.2/sprites/tilesets/fences.png" id="10_3temo"]
 [ext_resource type="Script" path="res://game_design/l.gd" id="10_mas0u"]
+[ext_resource type="PackedScene" uid="uid://dgbnj0pgw0tjc" path="res://scenes/slime_ranger.tscn" id="12_jdcw7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vs05a"]
 
@@ -484,13 +484,34 @@ shape = SubResource("RectangleShape2D_oxc3u")
 sprite_frames = SubResource("SpriteFrames_ucecb")
 animation = &"open_chest"
 
-[node name="slime" parent="." instance=ExtResource("10_0gqed")]
-position = Vector2(905, 48)
+[node name="slime3" parent="." instance=ExtResource("12_jdcw7")]
+position = Vector2(1599, -544)
 
-[node name="slime2" parent="." instance=ExtResource("10_0gqed")]
-position = Vector2(1581, -504)
+[node name="slime4" parent="." instance=ExtResource("12_jdcw7")]
+position = Vector2(2210, -389)
 
-[node name="slime3" parent="." instance=ExtResource("10_0gqed")]
-position = Vector2(1629, 848)
+[node name="slime6" parent="." instance=ExtResource("12_jdcw7")]
+position = Vector2(2199, 43)
+
+[node name="slime7" parent="." instance=ExtResource("12_jdcw7")]
+position = Vector2(2189, 583)
+
+[node name="slime8" parent="." instance=ExtResource("12_jdcw7")]
+position = Vector2(1610, 393)
+
+[node name="slime9" parent="." instance=ExtResource("12_jdcw7")]
+position = Vector2(889, 939)
+
+[node name="slime10" parent="." instance=ExtResource("12_jdcw7")]
+position = Vector2(899, -475)
+
+[node name="slime5" parent="." instance=ExtResource("12_jdcw7")]
+position = Vector2(1883, -195)
+
+[node name="slime2" parent="." instance=ExtResource("12_jdcw7")]
+position = Vector2(909, 24)
+
+[node name="slime" parent="." instance=ExtResource("12_jdcw7")]
+position = Vector2(1632, 833)
 
 [connection signal="body_entered" from="exit" to="exit" method="_on_Area2D_body_entered"]

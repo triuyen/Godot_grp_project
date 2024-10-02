@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dgbnj0pgw0tjc"]
+[gd_scene load_steps=12 format=3 uid="uid://dgbnj0pgw0tjc"]
 
 [ext_resource type="Script" path="res://scripts/slime.gd" id="1_l4ayc"]
 [ext_resource type="PackedScene" uid="uid://kr1ih82cd4i7" path="res://components/hurtbox_coponent.tscn" id="2_ocgs5"]
@@ -7,6 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://bgymceix1esb6" path="res://components/blinking_component.tscn" id="5_5a7op"]
 [ext_resource type="SpriteFrames" uid="uid://b7n66o8op5yds" path="res://animations/slime.tres" id="6_434pe"]
 [ext_resource type="PackedScene" uid="uid://db7iiqivly0g8" path="res://components/detection_component.tscn" id="7_aiapl"]
+[ext_resource type="PackedScene" path="res://components/shooter_component.tscn" id="8_nk4i2"]
+[ext_resource type="AudioStream" uid="uid://dmme508bb3q75" path="res://assets/sounds/shoot.wav" id="9_e6ci5"]
+[ext_resource type="Script" path="res://scripts/shoot_sound.gd" id="10_fbau0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iirjt"]
 size = Vector2(14, 6.25)
@@ -16,6 +19,7 @@ scale = Vector2(4, 4)
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_l4ayc")
+is_melee = false
 
 [node name="hurtbox_coponent" parent="." node_paths=PackedStringArray("health") instance=ExtResource("2_ocgs5")]
 health = NodePath("../health_component")
@@ -35,15 +39,28 @@ shape = SubResource("RectangleShape2D_iirjt")
 unique_name_in_owner = true
 position = Vector2(0, -5.75)
 sprite_frames = ExtResource("6_434pe")
-animation = &"move_down"
+animation = &"idle_down"
 autoplay = "idle_down"
-frame_progress = 0.583219
 
 [node name="detection_component" parent="." instance=ExtResource("7_aiapl")]
+unique_name_in_owner = true
 collision_layer = 0
+
+[node name="shooter_component" parent="." instance=ExtResource("8_nk4i2")]
+
+[node name="rotate_timer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[node name="shoot_sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_e6ci5")
+script = ExtResource("10_fbau0")
 
 [connection signal="on_hit_taken" from="hurtbox_coponent" to="." method="_on_hit_taken"]
 [connection signal="on_hit_taken" from="hurtbox_coponent" to="blinking_component" method="_on_hit_taken"]
 [connection signal="area_entered" from="hitbox_component" to="." method="_on_player_hit"]
 [connection signal="on_death" from="health_component" to="." method="_on_death"]
-[connection signal="area_entered" from="detection_component" to="." method="_on_player_detected"]
+[connection signal="body_entered" from="detection_component" to="." method="_on_detection_component_body_entered"]
+[connection signal="body_entered" from="detection_component" to="shooter_component" method="_on_detection_component_body_entered"]
+[connection signal="shot" from="shooter_component" to="shoot_sound" method="_on_shooter_component_shot"]
+[connection signal="timeout" from="rotate_timer" to="." method="_on_rotate_timer_timeout"]

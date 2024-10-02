@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Donjon et Slime"
-run/main_scene="res://scenes/root.tscn"
+run/main_scene="res://game_design/game_desgin.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -92,6 +92,7 @@ player_dash={
 
 [layer_names]
 
+2d_render/layer_1="player"
 2d_render/layer_2="obstacles"
 2d_render/layer_3="enemies"
 2d_physics/layer_1="player"
