@@ -2,19 +2,20 @@ extends CharacterBody2D
 
 @onready var player: CharacterBody2D = self
 @onready var sprite: AnimatedSprite2D = %sprite    
-@onready var health_bar: ProgressBar = %health_bar
+@onready var stamina_component: StaminaComponent = $stamina_component
 
 # constants
 const SPEED: int = 300
 const DASH_SPEED: int = 1000
 const DASH_DURATION: float = 1
-
+	
 # stats 
 var damage_amount: int = 20
 
 var direction: Vector2
 var flip_x = false
 var anim_direction: String = "down"
+var slow_ratio: float = 1.0
 
 # attack variables
 var is_attacking = false
@@ -25,6 +26,7 @@ var attack_offset = 8
 # dash
 var is_dashing = false
 var dash_timer = Timer
+signal has_dashed
 
 # states variables
 var is_alive = true
@@ -32,14 +34,15 @@ var is_alive = true
 func _ready() -> void:
 	attack_hitbox.monitorable = false
 	attack_hitbox.monitoring = false
-	pass
+	SignalBus.slow_player.connect(func (ratio, time): slow_player(ratio, time))
 
 func _process(_delta: float) -> void:
-	
 	if not is_alive : return 
 		
 	# attack
 	if Input.is_action_just_pressed("player_attack") and not is_attacking:
+		%attack_sound.play()
+		player.velocity =  Vector2.ZERO
 		is_attacking = true
 		attack_hitbox.monitorable = true
 		attack_hitbox.monitoring = true
@@ -75,7 +78,7 @@ func _process(_delta: float) -> void:
 	var input_vector = Vector2(input_x, input_y).normalized()
 	direction = input_vector
 	
-	player.velocity = input_vector * SPEED
+	player.velocity = input_vector * SPEED * slow_ratio
 
 	# animation
 	var base_anim = "idle_" if direction == Vector2.ZERO else "walk_"
@@ -110,6 +113,10 @@ func show_game_over() -> void:
 	pass
 
 func start_dash() -> void:
+	
+	if ask_for_stamina() == false:
+		return
+		
 	is_dashing = true
 	var dash_direction = Vector2()
 	
@@ -126,10 +133,19 @@ func start_dash() -> void:
 	await get_tree().create_timer(0.1).timeout
 	_end_dash()
 	
-
 func _end_dash() -> void:
 	is_dashing = false
 	player.velocity =  Vector2.ZERO
-
-#func _on_health_component_on_damage() -> void:
-	#pass
+	has_dashed.emit()
+	
+func slow_player(ratio: float, time: float):
+	slow_ratio = 1 - ratio
+	await get_tree().create_timer(time).timeout
+	slow_ratio = 1
+	
+func ask_for_stamina() -> bool:
+	if(stamina_component.stamina > 0):
+		return true
+	else:
+		print("Vous n'avez pas assez de stamina.")
+		return false

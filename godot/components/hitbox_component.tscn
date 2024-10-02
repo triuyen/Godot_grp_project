@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/hitbox.gd" id="1_diapp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wy4gk"]
-size = Vector2(15.5, 10.5)
+size = Vector2(15.5, 18.25)
 
 [node name="hitbox_component" type="Area2D"]
 position = Vector2(0, -5.75)

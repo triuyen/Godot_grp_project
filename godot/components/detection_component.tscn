@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://db7iiqivly0g8"]
+
+[node name="detection_component" type="Area2D"]
+
+[node name="detection_zone" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(7, 0, -7, 0, -40, 50, 40, 50)
