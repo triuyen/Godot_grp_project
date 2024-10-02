@@ -135,12 +135,12 @@ func start_dash() -> void:
 func _end_dash() -> void:
 	is_dashing = false
 	player.velocity =  Vector2.ZERO
+	has_dashed.emit()
 	
 func slow_player(ratio: float, time: float):
 	slow_ratio = 1 - ratio
 	await get_tree().create_timer(time).timeout
 	slow_ratio = 1
-	has_dashed.emit()
 	
 func ask_for_stamina() -> bool:
 	if(stamina_component.stamina > 0):

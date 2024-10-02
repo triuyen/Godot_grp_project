@@ -32,5 +32,6 @@ func _on_timer_timeout() -> void:
 	stamina = clamp(stamina, 0, MAX_STAMINA)
 
 func _on_player_has_dashed() -> void:
+	print("dashed")
 	_consume_stamina()
 	stamina_updated.emit(stamina)
