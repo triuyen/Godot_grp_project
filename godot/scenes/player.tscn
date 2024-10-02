@@ -1,8 +1,9 @@
-[gd_scene load_steps=61 format=3 uid="uid://b885koudadcot"]
+[gd_scene load_steps=62 format=3 uid="uid://b885koudadcot"]
 
 [ext_resource type="Texture2D" uid="uid://dhec6fqt6p5tv" path="res://assets/mystic_woods_free_2.2/sprites/characters/player.png" id="1_0yyrw"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_dp3ll"]
 [ext_resource type="Script" path="res://scripts/hitbox.gd" id="3_6cmhe"]
+[ext_resource type="PackedScene" uid="uid://cuolex4mbt1r8" path="res://components/stamina_component.tscn" id="3_qbfto"]
 [ext_resource type="PackedScene" uid="uid://kr1ih82cd4i7" path="res://components/hurtbox_coponent.tscn" id="4_k23yd"]
 [ext_resource type="PackedScene" uid="uid://bul2b4ejgss2c" path="res://components/health_component.tscn" id="5_e66l8"]
 [ext_resource type="PackedScene" uid="uid://bgymceix1esb6" path="res://components/blinking_component.tscn" id="5_wq213"]
@@ -429,7 +430,10 @@ collision_mask = 6
 script = ExtResource("1_dp3ll")
 
 [node name="health_component" parent="." instance=ExtResource("5_e66l8")]
-position = Vector2(0, -2.805)
+position = Vector2(0, -7)
+
+[node name="stamina_component" parent="." instance=ExtResource("3_qbfto")]
+position = Vector2(0, -6.75)
 
 [node name="shape_body" type="CollisionShape2D" parent="."]
 position = Vector2(0.25, -2.75)
@@ -468,5 +472,6 @@ offset = Vector2(0, -16)
 collision_mask = 16
 health = NodePath("../health_component")
 
+[connection signal="has_dashed" from="." to="stamina_component" method="_on_player_has_dashed"]
 [connection signal="on_death" from="health_component" to="." method="die"]
 [connection signal="on_hit_taken" from="hurtbox_coponent" to="blinking_component" method="_on_hit_taken"]
