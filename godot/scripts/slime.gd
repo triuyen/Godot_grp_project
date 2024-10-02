@@ -18,6 +18,7 @@ func _process(delta: float) -> void:
 		return
 	# move direction
 	if is_instance_valid(target):
+		%sprite.play("idle_down")
 		if is_melee:
 			var direction_vector = (target.global_position - self.global_position).normalized()
 			self.velocity = direction_vector * speed
