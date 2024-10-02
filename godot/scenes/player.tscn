@@ -455,9 +455,6 @@ rotation = -3.14159
 scale = Vector2(1.26714, -0.896319)
 shape = SubResource("RectangleShape2D_j6c2y")
 
-[node name="health_component" parent="." instance=ExtResource("5_e66l8")]
-position = Vector2(0, -3.97)
-
 [node name="blinking_component" parent="." instance=ExtResource("5_wq213")]
 
 [node name="sprite" type="AnimatedSprite2D" parent="blinking_component"]
@@ -469,6 +466,7 @@ offset = Vector2(0, -16)
 
 [node name="hurtbox_coponent" parent="." node_paths=PackedStringArray("health") instance=ExtResource("4_k23yd")]
 collision_mask = 16
+health = NodePath("../health_component")
 
-[connection signal="on_hit_taken" from="hurtbox_coponent" to="blinking_component" method="_on_hit_taken"]
 [connection signal="on_death" from="health_component" to="." method="die"]
+[connection signal="on_hit_taken" from="hurtbox_coponent" to="blinking_component" method="_on_hit_taken"]
